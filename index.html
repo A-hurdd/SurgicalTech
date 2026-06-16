@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Surgical Instrument Study</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <nav class="topbar" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Surgical Instrument Study home">SurgiStudy</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+    </nav>
+    <section class="hero-content" id="top">
+      <p class="eyebrow">Surgical Technology Study Tool</p>
+      <h1>Learn surgical instruments faster.</h1>
+      <p class="hero-copy">Search, filter, mark learned items, and quiz yourself with a clean JSON-powered card library.</p>
+      <div class="stats" aria-label="Study statistics">
+        <span><strong id="totalCount">0</strong> instruments</span>
+        <span><strong id="learnedCount">0</strong> learned</span>
+        <span><strong id="visibleCount">0</strong> shown</span>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="panel controls" aria-label="Study controls">
+      <label class="search-wrap" for="searchInput">
+        <span>Search instruments</span>
+        <input id="searchInput" type="search" placeholder="Try “hemostat”, “laparoscopic”, or “skin closure”">
+      </label>
+      <div class="filters">
+        <label>Category<select id="categoryFilter"><option value="all">All categories</option></select></label>
+        <label>Difficulty<select id="difficultyFilter"><option value="all">All levels</option></select></label>
+        <label>Status<select id="learnedFilter"><option value="all">All</option><option value="learned">Learned</option><option value="not-learned">Not learned</option></select></label>
+      </div>
+      <div class="actions">
+        <button id="resetFilters" type="button">Reset filters</button>
+        <button id="quizMode" type="button" class="primary">Start quiz mode</button>
+      </div>
+    </section>
+
+    <section class="quiz panel hidden" id="quizPanel" aria-live="polite">
+      <div>
+        <p class="eyebrow">Quiz mode</p>
+        <h2 id="quizPrompt">Identify this instrument</h2>
+        <p id="quizClue"></p>
+      </div>
+      <div class="quiz-card" id="quizCard"></div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <p class="quiz-feedback" id="quizFeedback"></p>
+      <div class="actions"><button id="nextQuestion" type="button">Next question</button><button id="exitQuiz" type="button">Exit quiz</button></div>
+    </section>
+
+    <section class="cards" id="cards" aria-label="Instrument cards"></section>
+    <p class="empty hidden" id="emptyState">No instruments match your filters. Try a broader search.</p>
+  </main>
+
+  <template id="cardTemplate">
+    <article class="card">
+      <div class="image-slot"></div>
+      <div class="card-body">
+        <div class="card-head">
+          <div><p class="category"></p><h2></h2><p class="subcategory"></p></div>
+          <button class="learned-btn" type="button"></button>
+        </div>
+        <p class="use"></p>
+        <div class="tags"></div>
+        <dl class="details"></dl>
+        <p class="notes"></p>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
